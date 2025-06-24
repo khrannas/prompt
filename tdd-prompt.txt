@@ -1,0 +1,114 @@
+# 🧪 Session Context
+
+- **Test file(s) for TDD:**  
+  - `web/e2e/generated-tests/product-listing.spec.ts`
+  - (add more as needed)
+- **Important docs to reference:**  
+  - `/docs/requirements.md`
+  - `/docs/api.md`
+  - (add more as needed)
+- **Special instructions:**  
+  - (e.g., "Focus on positive/negative cases", "Do not touch user registration", etc.)
+
+---
+
+# 🛠️ Fullstack TDD/Debugging Prompt for Autonomous AI Development
+
+## **Project Conventions & Environment**
+
+- **Backend:** Go (API, handlers, middleware, logs in `api/server.log` or similar)
+- **Frontend:** React (pages in `web/src/pages`, components in `web/src/components`)
+- **E2E Tests:** Playwright (tests in `web/e2e/generated-tests/`)
+- **Logs:** Always check `api/server.log` or the configured log file for backend errors.
+- **How to Run:**
+  - **Backend:** Use `air` or `go run cmd/server/main.go` from the correct directory (`repo/warni/api`). This auto reload. Only run it once and remember.
+  - **Frontend:** Use `npm run dev` or `yarn dev` from `repo/warni/web`.
+  - **E2E:** Run from `repo/warni/web` with `npx playwright test`.
+- **Executable/Working Folders:**  
+  - Backend: `repo/warni/api`
+  - Frontend: `repo/warni/web`
+  - Tests: `repo/warni/web/e2e/generated-tests/`
+- **Test/Log/Executable Discovery:**  
+  - If unsure, always list directories (`ls`, `list_dir`) and search for files (`grep`, `codebase_search`).
+  - Always check for the latest log file location and test file paths before running or reading.
+
+---
+
+## **Autonomous Execution Rules**
+
+- **Do not ask for user input unless you have failed 10 times or are truly blocked.**
+- **If you need to find a file, log, or executable, use directory listing and file search tools.**
+- **If a command fails due to a path, try to discover the correct path automatically.**
+- **If you need to run a command, always use the correct working directory.**
+- **If you need to check logs, always try all likely log locations.**
+- **If you need to run backend/frontend/tests, do so without asking, unless you are truly blocked.**
+- **If you need to debug, add and remove logs autonomously.**
+- **If you need to use external libraries, always use `context7` for documentation.**
+- **For complex problems, always use `sequentialthinking` (mcp) to break down the problem.**
+- **If you are not using mcp for complex reasoning, you are not following the rules.**
+- **Never just say you will do something autonomously—actually do it.**
+- **If you are stuck, always try to resolve the issue yourself before asking.**
+
+---
+
+## **Lessons Learned & Best Practices**
+
+### **Go Context Keys**
+- Always use exported, consistent context keys (e.g., `UserIDKey`) in both middleware and handlers.
+- Mismatched context keys will silently break authentication/authorization.
+
+### **Backend/Frontend Contract**
+- Confirm the expected format for all fields (e.g., images as base64, not files or URLs) between frontend and backend.
+
+### **E2E Test Robustness**
+- Fill all required fields in forms, including those that may be conditionally rendered.
+- Use the correct `data-testid` for each form element.
+- Prefer waiting for visible elements over URL changes in SPA navigation.
+
+### **Debugging**
+- Add temporary debug logs at every step of the request lifecycle (middleware, handler entry, context access, validation, DB calls).
+- Remove all debug logs and temporary code before finalizing the TDD cycle.
+
+### **Token/Session Handling**
+- After any auth or onboarding flow, always check that the token is present in localStorage and that the Authorization header is set for API requests.
+
+### **Timeouts in Playwright**
+- If a test times out, check for resource exhaustion, browser context leaks, or missing awaits. Run tests in isolation to debug.
+
+### **Directory/Path Issues**
+- If a command fails due to a path, always try to discover the correct path using directory listing and file search tools.
+- Do not assume the working directory—always check and set it as needed.
+
+### **Autonomy**
+- Do not ask for user input unless you have failed 10 times or are truly blocked.
+- If you say you will do something autonomously, actually do it—do not just state your intent.
+
+### **Use of MCP**
+- For any complex reasoning, always use the `mcp` (sequentialthinking) tool to break down the problem and document your thought process.
+- If you are not using mcp for complex issues, you are not following the rules.
+
+---
+
+## **Checklist for Future Sessions**
+
+- [ ] Use directory listing and file search to locate all files/logs/executables.
+- [ ] Use the correct working directory for all commands.
+- [ ] Use context7 for external library documentation.
+- [ ] Use mcp/sequentialthinking for complex problems.
+- [ ] Add and remove debug logs autonomously.
+- [ ] Do not ask for user input unless truly blocked.
+- [ ] Clean up all debug code before finalizing.
+- [ ] Always check and use the correct context keys in Go.
+- [ ] Ensure all required fields/selectors are present in E2E tests.
+- [ ] Prefer element visibility over URL for SPA navigation waits.
+- [ ] If stuck, try all possible solutions before asking.
+
+---
+
+## **How to Use This Prompt**
+
+- Paste this prompt at the start of every new TDD/debugging session.
+- Use it as a checklist and as a set of rules for the AI agent.
+- If the agent is not following these rules, remind it to do so.
+
+---
